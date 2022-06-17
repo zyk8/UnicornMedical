@@ -29,7 +29,15 @@ export class FhirUtilService {
 
     return `${line}${city}${postalCode}${state}`;
   }
-
+  /**
+   * Baut aus dem Telecom Objet ein String der in der View verwendet werden kann. Leider nicht sauber implementiert (Keine Zeilenumbrüche). Besser wäre wohl ein Array um diesen in der View Anzuzeigen.
+   *
+   * @private
+   * @static
+   * @param {IFhirResourceTelecom} resourceTelecom
+   * @returns {string}
+   * @memberof FhirUtilService
+   */
   private static getFhirTelecomRepresentation(resourceTelecom: IFhirResourceTelecom): string {
     const system = resourceTelecom.system ? `${resourceTelecom.system}: ` : '';
     const value = resourceTelecom.value ? `${resourceTelecom.value}\n` : '';

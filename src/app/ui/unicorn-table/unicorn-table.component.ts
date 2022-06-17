@@ -27,7 +27,12 @@ export class UnicornTableComponent implements OnInit {
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
   }
-
+  /**
+   * Öffnet den Dialog für die Detailansicht
+   *
+   * @param {(IFhirPatient | IFhirPractitioner)} masterItemData
+   * @memberof UnicornTableComponent
+   */
   openDialog(masterItemData: IFhirPatient | IFhirPractitioner) {
     const dialogRef = this.dialog.open(MasterItemViewComponent, {
       width: '500px',

@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FhirUtilService } from '@red-probeaufgabe/search';
 
@@ -15,6 +15,7 @@ export class MasterItemViewComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    //Daten für die View aufbereiten.
     this.data.masterItemData = this.fhirUtilService.prepareData(this.data.masterItemData);
   }
 }

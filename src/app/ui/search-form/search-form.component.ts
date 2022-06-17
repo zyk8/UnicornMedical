@@ -29,6 +29,7 @@ export class SearchFormComponent implements OnInit {
   constructor(private readonly searchFacade: SearchFacadeService) {}
 
   ngOnInit(): void {
+    // Ruft die Suche auf wenn es zur Eingaben in der Eingabemaske kommt.
     this.searchForm
       .get('searchField')
       .statusChanges.pipe(debounceTime(300))
@@ -37,7 +38,7 @@ export class SearchFormComponent implements OnInit {
           this.search(this.searchForm.get('searchField').value, this.searchForm.get('filterField').value);
         }
       });
-
+    // Ruft die Suche  auf wenn der Filter gewechselt wird und die Eingabe gültig ist
     this.searchForm.get('filterField').valueChanges.subscribe((filterValue) => {
       if (this.searchForm.get('searchField').status === 'VALID') {
         this.search(this.searchForm.get('searchField').value, filterValue);
@@ -45,6 +46,13 @@ export class SearchFormComponent implements OnInit {
     });
   }
 
+  /**
+   * Aufruf der Suche. Hier fehlt noch alles was mit der weitergabe zum UI zu tun hat.
+   * Auf die Schnelle habe ich kein Event gefunden, welches dieses Triggern würde. Ich würde Wahrscheinlich aus dieser Funktion ein Event triggern ins Dasboard, welches search$ überschreibt und neu auslöst.
+   * @param {*} query
+   * @param {*} type
+   * @memberof SearchFormComponent
+   */
   search(query, type) {
     console.log(query, type);
     this.searchFacade.search(type, query);
