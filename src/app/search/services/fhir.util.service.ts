@@ -4,6 +4,7 @@ import {
   IFhirPractitioner,
   IFhirResourceAddress,
   IFhirResourceHumanName,
+  IFhirResourceTelecom,
   IPreparedIFhirPatient,
   IPreparedIFhirPractitioner,
 } from '@red-probeaufgabe/types';
@@ -29,6 +30,14 @@ export class FhirUtilService {
     return `${line}${city}${postalCode}${state}`;
   }
 
+  private static getFhirTelecomRepresentation(resourceTelecom: IFhirResourceTelecom): string {
+    const system = resourceTelecom.system ? `${resourceTelecom.system}: ` : '';
+    const value = resourceTelecom.value ? `${resourceTelecom.value}\n` : '';
+    const use = resourceTelecom.use ? `${resourceTelecom.use}\n` : '';
+
+    return `${system}${value}${use}`;
+  }
+
   /**
    * Prepare FHIR data for detail view
    * @param data
@@ -41,6 +50,10 @@ export class FhirUtilService {
       FhirUtilService.getFhirNameRepresentation(humanName),
     );
 
-    return { ...data, address, name };
+    const telecom = data.telecom?.map((resourceTelecom: IFhirResourceTelecom) =>
+      FhirUtilService.getFhirTelecomRepresentation(resourceTelecom),
+    );
+
+    return { ...data, address, name, telecom };
   }
 }
