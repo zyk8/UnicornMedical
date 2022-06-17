@@ -1,1 +1,31 @@
-<!-- implement search form here -->
+<form [formGroup]="searchForm">
+    <div class="form">
+
+        <div class="search-input">
+            <mat-form-field appearance="fill">
+                <mat-label>Suche</mat-label>
+                <input matInput
+                    formControlName="searchField" />
+                <mat-error *ngIf="searchForm.get('searchField').invalid">Bitte keine Umlaute und Leerzeichen eingeben.
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="select-input">
+
+            <mat-form-field appearance="fill">
+                <mat-label>FHIR Profiles</mat-label>
+                <mat-select [formControl]="filterField"
+                    [value]="filterOptions[0].key">
+                    <mat-option *ngFor="let filterOption of filterOptions"
+                        [value]="filterOption.key">
+                        {{filterOption.value}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="filterField.hasError('required')">Please choose an animal</mat-error>
+                <mat-hint>{{filterField.value?.sound}}</mat-hint>
+            </mat-form-field>
+
+        </div>
+
+    </div>
+</form>
