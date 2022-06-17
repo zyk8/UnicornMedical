@@ -24,6 +24,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatRippleModule } from '@angular/material/core';
 import { DialogDetailRowComponent } from './dialog-detail-row/dialog-detail-row.component';
 import { SearchFormComponent } from './search-form/search-form.component';
+import { MasterItemViewComponent } from './master-item-view/master-item-view.component';
 
 @NgModule({
   imports: [
@@ -53,6 +54,7 @@ import { SearchFormComponent } from './search-form/search-form.component';
     UnicornTableComponent,
     DialogDetailRowComponent,
     SearchFormComponent,
+    MasterItemViewComponent,
   ],
   exports: [
     // Components

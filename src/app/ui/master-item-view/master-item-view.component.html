@@ -1,0 +1,27 @@
+<mat-card>
+    <mat-card-header>
+
+        <mat-card-title> {{ data.masterItemData.name[0] }}
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-list>
+            <mat-list-item> Resource Typ: {{ data.masterItemData.resourceType }}</mat-list-item>
+            <mat-list-item> ID: {{ data.masterItemData.id }}</mat-list-item>
+        </mat-list>
+        <mat-list *ngIf="data.masterItemData.resourceType=='Patient'">
+            <mat-list-item> Geburtstag: {{ data.masterItemData.birthDate | date:'mediumDate' : 'unknown' }}
+            </mat-list-item>
+            <mat-list-item> Gender: {{ data.masterItemData.gender }}</mat-list-item>
+            <mat-list-item> Adresse: {{ data.masterItemData?.address ?
+                (data.masterItemData.address[0]) : 'unknown' }}
+            </mat-list-item>
+        </mat-list>
+        <mat-list *ngIf="data.masterItemData.resourceType=='Practitioner'">
+            <mat-list-item>{{ data.masterItemData.telecom }}</mat-list-item>
+        </mat-list>
+
+    </mat-card-content>
+
+
+</mat-card>
