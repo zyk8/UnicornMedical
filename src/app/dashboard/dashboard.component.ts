@@ -4,7 +4,7 @@ import { catchError, map, shareReplay, startWith, tap } from 'rxjs/operators';
 import { SiteTitleService } from '@red-probeaufgabe/core';
 import { FhirSearchFn, IFhirPatient, IFhirPractitioner, IFhirSearchResponse } from '@red-probeaufgabe/types';
 import { IUnicornTableColumn } from '@red-probeaufgabe/ui';
-import { AbstractSearchFacadeService } from '@red-probeaufgabe/search';
+import { AbstractSearchFacadeService, SearchFacadeService } from '@red-probeaufgabe/search';
 
 @Component({
   selector: 'app-dashboard',
@@ -44,8 +44,8 @@ export class DashboardComponent {
     map((data) => !!data && data.total),
     startWith(0),
   );
-
-  constructor(private siteTitleService: SiteTitleService, private searchFacade: AbstractSearchFacadeService) {
+  // Hier wurde der Abstracte Servcice verwendet, dieser liegt aber nicht in der DI. Deshalb musste die konkrete Implementierung ausgewählt werden. Diese wird Annotation @Injectable() in die DI gelegt
+  constructor(private siteTitleService: SiteTitleService, private searchFacade: SearchFacadeService) {
     this.siteTitleService.setSiteTitle('Dashboard');
   }
 
